@@ -1,8 +1,5 @@
 # kube-drift
-// TODO(user): Add simple overview of use/purpose
-
-## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+**kube-drift** is a Kubernetes operator that detects and resolves configuration drift between live resources and their source-of-truth manifests in Git. 
 
 ## Getting Started
 
