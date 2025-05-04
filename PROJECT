@@ -7,4 +7,14 @@ layout:
 - go.kubebuilder.io/v4
 projectName: kube-drift
 repo: github.com/imad-elbouhati/kube-drift
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: my.domain
+  group: drift
+  kind: DriftPolicy
+  path: github.com/imad-elbouhati/kube-drift/api/v1alpha1
+  version: v1alpha1
 version: "3"

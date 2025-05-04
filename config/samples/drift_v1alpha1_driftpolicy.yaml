@@ -1,0 +1,9 @@
+apiVersion: drift.my.domain/v1alpha1
+kind: DriftPolicy
+metadata:
+  labels:
+    app.kubernetes.io/name: kube-drift
+    app.kubernetes.io/managed-by: kustomize
+  name: driftpolicy-sample
+spec:
+  # TODO(user): Add fields here
