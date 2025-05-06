@@ -52,7 +52,7 @@ type DriftPolicyStatus struct {
 	LastRevision string `json:"lastRevision,omitempty"`
 
 	DriftDetected bool `json:"driftDetected,omitempty"`
-	
+
 	LastChecked metav1.Time `json:"lastChecked,omitempty"`
 }
 
