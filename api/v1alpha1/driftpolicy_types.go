@@ -46,9 +46,14 @@ type DriftPolicySpec struct {
 }
 
 // DriftPolicyStatus defines the observed state of DriftPolicy.
+// +kubebuilder:subresource:status
 type DriftPolicyStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
+	// LastRevision is the Git revision (commit hash or tag) last processed for drift check.
+	LastRevision string `json:"lastRevision,omitempty"`
+
+	DriftDetected bool `json:"driftDetected,omitempty"`
+	
+	LastChecked metav1.Time `json:"lastChecked,omitempty"`
 }
 
 // +kubebuilder:object:root=true
