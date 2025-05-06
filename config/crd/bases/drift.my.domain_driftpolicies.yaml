@@ -1,0 +1,81 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.17.2
+  name: driftpolicies.drift.my.domain
+spec:
+  group: drift.my.domain
+  names:
+    kind: DriftPolicy
+    listKind: DriftPolicyList
+    plural: driftpolicies
+    singular: driftpolicy
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: DriftPolicy is the Schema for the driftpolicies API.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: DriftPolicySpec defines the desired state of DriftPolicy.
+            properties:
+              syncSource:
+                description: Git source of the truth
+                properties:
+                  path:
+                    type: string
+                  repoUrl:
+                    type: string
+                  revision:
+                    type: string
+                required:
+                - path
+                - repoUrl
+                - revision
+                type: object
+              targetRef:
+                description: Reference to the Kubernetes resource to monitor
+                properties:
+                  kind:
+                    type: string
+                  name:
+                    type: string
+                  namespace:
+                    type: string
+                required:
+                - kind
+                - name
+                - namespace
+                type: object
+            required:
+            - syncSource
+            - targetRef
+            type: object
+          status:
+            description: DriftPolicyStatus defines the observed state of DriftPolicy.
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
