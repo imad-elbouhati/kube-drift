@@ -23,13 +23,26 @@ import (
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
+type TargetReference struct {
+	Kind      string `json:"kind"`
+	Name      string `json:"name"`
+	Namespace string `json:"namespace"`
+}
+
+type GitSyncSource struct {
+	// +kubebuilder:validation:'^https?:\/\/.+$'
+	RepoURL  string `json:"repoUrl"`
+	Path     string `json:"path"`
+	Revision string `json:"revision"`
+}
+
 // DriftPolicySpec defines the desired state of DriftPolicy.
 type DriftPolicySpec struct {
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
+	// Reference to the Kubernetes resource to monitor
+	TargetRef TargetReference `json:"targetRef"`
 
-	// Foo is an example field of DriftPolicy. Edit driftpolicy_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	// Git source of the truth
+	SyncSource GitSyncSource `json:"syncSource"`
 }
 
 // DriftPolicyStatus defines the observed state of DriftPolicy.
