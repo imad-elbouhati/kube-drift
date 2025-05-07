@@ -73,6 +73,16 @@ spec:
             type: object
           status:
             description: DriftPolicyStatus defines the observed state of DriftPolicy.
+            properties:
+              driftDetected:
+                type: boolean
+              lastChecked:
+                format: date-time
+                type: string
+              lastRevision:
+                description: LastRevision is the Git revision (commit hash or tag)
+                  last processed for drift check.
+                type: string
             type: object
         type: object
     served: true
