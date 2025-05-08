@@ -45,6 +45,7 @@ spec:
                   path:
                     type: string
                   repoUrl:
+                    pattern: ^(http|https)://
                     type: string
                   revision:
                     type: string

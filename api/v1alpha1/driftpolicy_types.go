@@ -30,9 +30,14 @@ type TargetReference struct {
 }
 
 type GitSyncSource struct {
-	// +kubebuilder:validation:'^https?:\/\/.+$'
-	RepoURL  string `json:"repoUrl"`
-	Path     string `json:"path"`
+
+	// +kubebuilder:validation:Pattern="^(http|https)://"
+	RepoURL string `json:"repoUrl"`
+
+	// +kubebuilder:validation:Required
+	Path string `json:"path"`
+
+	// +kubebuilder:validation:Required
 	Revision string `json:"revision"`
 }
 
