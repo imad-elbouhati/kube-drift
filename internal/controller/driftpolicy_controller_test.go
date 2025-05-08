@@ -51,7 +51,18 @@ var _ = Describe("DriftPolicy Controller", func() {
 						Name:      resourceName,
 						Namespace: "default",
 					},
-					// TODO(user): Specify other spec details if needed.
+					Spec: driftv1alpha1.DriftPolicySpec{
+						TargetRef: driftv1alpha1.TargetReference{
+							Kind:      "Deployment",
+							Name:      "example-deployment",
+							Namespace: "default",
+						},
+						SyncSource: driftv1alpha1.GitSyncSource{
+							RepoURL:  "https://github.com/imad-elbouhati/kube-drift",
+							Path:     "manifests/deployment.yaml",
+							Revision: "main",
+						},
+					},
 				}
 				Expect(k8sClient.Create(ctx, resource)).To(Succeed())
 			}
